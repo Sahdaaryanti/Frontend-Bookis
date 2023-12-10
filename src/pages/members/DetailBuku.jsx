@@ -97,10 +97,10 @@ const DetailBuku = () => {
           <div className="flex flex-col md:flex-row justify-center items-center">
             {fileBuku && fileBuku.urlFile && (
               <img
-                src={`https://backed-bookis-production-c128.up.railway.app/${fileBuku.urlFile}`}
-                className="w-full md:w-64 h-96 object-cover mb-4 md:mr-10"
-                alt={`Cover ${detailBuku.judul}`}
-              />
+              src={`${fileBuku.urlFile}`}
+              className="mb-4 object-cover w-full h-48 lg:h-64 rounded-md justify-center"
+              // alt={Cover ${book.judul}}
+            />
             )}
             {/* <img src={detailBuku.gambarUrl} className="w-full md:w-64 h-96 object-cover mb-4 md:mr-10" /> */}
             <div className="ml-0 md:ml-10">

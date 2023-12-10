@@ -47,11 +47,11 @@ const BukuCard = ({ book }) => {
       <Link to={`/users/detail-buku/${book.id}`}>
         <h2 className="text-xl font-bold mb-2 text-center">{book.judul}</h2>
         {fileBuku && fileBuku.urlFile && (
-          <img
-            src={`http://localhost:3000/${fileBuku.urlFile}`}
-            className="mb-4 object-cover w-full h-48 lg:h-64 rounded-md justify-center"
-            alt={`Cover ${book.judul}`}
-          />
+           <img
+           src={`${fileBuku.urlFile}`}
+           className="mb-4 object-cover w-full h-48 lg:h-64 rounded-md justify-center"
+           alt={`Cover ${book.judul}`}
+         />
         )}
       </Link>
       <p className="text-gray-500 mb-2 text-center">{penulis.nama}</p>

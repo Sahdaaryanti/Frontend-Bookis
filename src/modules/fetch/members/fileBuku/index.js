@@ -29,5 +29,13 @@ const getAllFileBuku = async () => {
     throw error.response.data;
   }
 };
+const deleteFileBuku = async (fileId) => {
+  try {
+    const response = await instance.delete(`/file-buku/${fileId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
 
-export { createFileBuku, updateFileBuku, getAllFileBuku };
+export { createFileBuku, updateFileBuku, getAllFileBuku, deleteFileBuku };
