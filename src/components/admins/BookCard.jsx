@@ -48,7 +48,7 @@ const BookCard = ({ book }) => {
         <h2 className="text-xl font-bold mb-2 text-center">{book.judul}</h2>
         {fileBuku && fileBuku.urlFile && (
           <img
-            src={`http://localhost:3000/${fileBuku.urlFile}`}
+            src={`https://backed-bookis-production-c128.up.railway.app/${fileBuku.urlFile}`}
             className="mb-4 object-cover w-full h-48 lg:h-64 rounded-md justify-center"
             alt={`Cover ${book.judul}`}
           />

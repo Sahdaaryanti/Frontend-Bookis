@@ -75,7 +75,7 @@ const DetailBuku = () => {
           <div className="flex flex-col md:flex-row justify-center items-center">
             {fileBuku && fileBuku.urlFile && (
               <img
-                src={`http://localhost:3000/${fileBuku.urlFile}`}
+                src={`https://backed-bookis-production-c128.up.railway.app/${fileBuku.urlFile}`}
                 className="w-full md:w-64 h-96 object-cover mb-4 md:mr-10"
                 alt={`Cover ${detailBuku.judul}`}
               />
