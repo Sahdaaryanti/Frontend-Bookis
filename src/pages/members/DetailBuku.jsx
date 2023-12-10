@@ -98,7 +98,7 @@ const DetailBuku = () => {
             {fileBuku && fileBuku.urlFile && (
               <img
               src={`${fileBuku.urlFile}`}
-              className="w-full md:w-64 h-96 object-cover mb-4 md:mr-10"
+              className="w-full md:w-64 h-96 object-cover mb-4 md:mr-10 max-w-full"
               // alt={Cover ${book.judul}}
             />
             )}
