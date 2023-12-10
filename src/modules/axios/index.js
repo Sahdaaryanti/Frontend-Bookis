@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Set up Axios instance
-const baseURL = 'http://localhost:3000/api-docs';
+const baseURL = 'https://backed-bookis-production-c128.up.railway.app/api-docs';
 const instance = axios.create({ baseURL });
 
 // Add interceptor to automatically add authorization header
