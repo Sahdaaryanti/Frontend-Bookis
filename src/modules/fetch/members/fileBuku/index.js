@@ -1,9 +1,9 @@
 import { instance } from '../../../axios/index';
 
 // Create a new file buku
-const createFileBuku = async (fileData) => {
+const createFileBuku = async (formData) => {
   try {
-    const response = await instance.post('/file-buku', fileData);
+    const response = await instance.post('/file-buku', formData);
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -11,9 +11,9 @@ const createFileBuku = async (fileData) => {
 };
 
 // Update an existing file buku
-const updateFileBuku = async (fileId, fileData) => {
+const updateFileBuku = async (fileId, formData) => {
   try {
-    const response = await instance.put(`/file-buku/${fileId}`, fileData);
+    const response = await instance.put(`/file-buku/${fileId}`, formData);
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -29,13 +29,5 @@ const getAllFileBuku = async () => {
     throw error.response.data;
   }
 };
-const deleteFileBuku = async (fileId) => {
-  try {
-    const response = await instance.delete(`/file-buku/${fileId}`);
-    return response.data;
-  } catch (error) {
-    throw error.response.data;
-  }
-};
 
-export { createFileBuku, updateFileBuku, getAllFileBuku, deleteFileBuku };
+export { createFileBuku, updateFileBuku, getAllFileBuku };
