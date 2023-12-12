@@ -9,7 +9,7 @@ const RiwayatPesanan = () => {
   useEffect(() => {
     const getRiwayat = async () => {
       try {
-        const response = await fetch(`hhttps://backed-bookis-production-c128.up.railway.app/api-docs/payment/user/${localStorage.getItem('userId')}`);
+        const response = await fetch(`https://backed-bookis-production-c128.up.railway.app/api-docs/payment/user/${localStorage.getItem('userId')}`);
         const data = await response.json();
 
         setRiwayatPesanan(data.paymentStatusResults);
