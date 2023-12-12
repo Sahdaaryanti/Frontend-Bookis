@@ -26,7 +26,7 @@ const CheckOut = () => {
 
   const payment = async () => {
     try {
-      const response = await fetch("http://localhost:3000/payment/buku", {
+      const response = await fetch("https://backed-bookis-production-c128.up.railway.app/api-docs/payment/buku", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const CheckOut = () => {
   };
 
   return (
-    <div className="bg-[#FDF9EC] m-4 w-full h-full flex justify-center items-center flex-col">
+    <div className="bg-[#FDF9EC] m-4w-full h-full flex justify-center items-center flex-col">
       <h1 className="font-bold text-[2.25rem]">Checkout</h1>
       {!show && (
         <section className="w-[75%] flex flex-col gap-[3.38rem]">
