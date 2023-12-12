@@ -14,4 +14,3 @@ instance.interceptors.request.use((config) => {
 });
 
 export { instance  };
-
