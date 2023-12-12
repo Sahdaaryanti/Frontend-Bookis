@@ -4,9 +4,11 @@ import { getAllPenulis } from "../../modules/fetch/members/penulis";
 import { getAllPenerbit } from "../../modules/fetch/members/penerbit";
 import { getAllFileBuku } from "../../modules/fetch/members/fileBuku";
 import { getAllStocks } from "../../modules/fetch//members/gudang";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { instance } from "../../modules/axios/index";
 
 const DetailBuku = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [detailBuku, setDetailBuku] = useState(null);
   const [penulis, setPenulis] = useState({});
