@@ -16,6 +16,8 @@ import PaymentPage from "./pages/members/PaymentPage";
 import Shop from "./pages/members/riwayatPesanan";
 import ShopDetails from "./pages/members/detailRiwayatPesanan"
 import Keranjang from "./pages/members/keranjang"
+import CheckOut from "./pages/members/Checkout";
+import PaymentComponent from "./pages/members/Payment";
 
 function AppUsers() {
   return (
@@ -39,6 +41,8 @@ function AppUsers() {
                 <Route path={"users/shop"} element={<Shop />}/>
                 <Route path={"users/shop/:id"} element={<ShopDetails />}/>
                 <Route path={"users/keranjang"} element={<Keranjang />} />
+                <Route path={"users/checkout"} element={<CheckOut />} />
+                <Route path={"/users/payment"} element={<PaymentComponent />} />
             </Routes>
           <Footer /> 
         </Router>

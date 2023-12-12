@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import {  useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { instance } from '../../modules/axios';
+import { useNavigate } from 'react-router-dom';
 
 const CartItem = ({ product, onIncrease, onDecrease, onDelete }) => {
   const { id, image, name, price, quantity } = product;
@@ -72,11 +74,17 @@ CartItem.propTypes = {
 
 const Cart = ({ cart, onCheckout, onUpdateCart }) => {
   
-  const handleDelete = (productId) => {
+  const handleDelete = async (productId) => {
+    await instance.delete(`/cart/cart/remove/${productId}`);
     const updatedCart = cart.filter((product) => product.id !== productId);
     onUpdateCart(updatedCart);
-    console.log('Item deleted:', productId);
+    
   };
+
+  useEffect(() => {
+    const cartTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    console.log(cartTotal)
+  }, [cart]);
 
   return (
     <div className="min-h-screen max-w-3xl mx-auto my-8 p-8 border rounded">
@@ -128,32 +136,43 @@ Cart.propTypes = {
 
 const Keranjang = () => {
   const [cart, setCart] = useState([
-    {
-      id: 1,
-      name: 'Novel Kata',
-      image: 'https://via.placeholder.com/150',
-      price: 89000,
-      quantity: 2,
-    },
-    {
-      id: 2,
-      name: 'Novel Bulan',
-      image: 'https://via.placeholder.com/150',
-      price: 90000,
-      quantity: 3,
-    },
-    {
-      id: 3,
-      name: 'Novel Bumi',
-      image: 'https://via.placeholder.com/150',
-      price: 85000,
-      quantity: 1,
-    },
-    // Add more products as needed
+    // Your initial state
   ]);
 
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await instance.get('/cart/cart');
+
+        // Check if the response is successful and has data
+        if (response.status === 200 && response.data && Array.isArray(response.data.data)) {
+          // Map over the API response and format it according to your needs
+          const formattedCart = response.data.data.map(cartItem => ({
+            id: cartItem.id,
+            name: cartItem.bukus.judul,
+            image: cartItem.bukus.imageUrl || 'https://via.placeholder.com/150', // Replace with the actual image URL if available
+            price: parseFloat(cartItem.bukus.harga),
+            quantity: cartItem.jumlah,
+          }));
+
+          // Update the local state with the formatted cart data
+          setCart(formattedCart);
+
+        }
+      } catch (error) {
+        // Handle errors
+        console.error('Error fetching cart:', error);
+      }
+    };
+
+    fetchCart();
+  }, []); // Empty dependency array to run the effect only once
+
+
   const handleCheckout = () => {
-    console.log('Proses checkout...');
+    navigate('/users/checkout',{state: {cart: cart }})
   };
 
   const updateCart = (updatedCart) => {
@@ -162,7 +181,10 @@ const Keranjang = () => {
 
   return (
     <div className="App">
-      <Cart cart={cart} onCheckout={handleCheckout} onUpdateCart={updateCart} />
+        {cart.length !== 0 && (
+          <Cart cart={cart} onCheckout={handleCheckout} onUpdateCart={updateCart} />
+        )}
+      
     </div>
   );
 };

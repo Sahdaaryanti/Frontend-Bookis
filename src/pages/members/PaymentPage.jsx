@@ -1,18 +1,3 @@
-// PaymentPage.js
-// import React from "react";
-// import PaymentForm from "../../components/members/PaymentForm";
-
-// const PaymentPage = () => {
-//   return (
-//     <div className="w-full">
-//       <PaymentForm />
-//     </div>
-//   );
-// };
-
-// export default PaymentPage;
-
-// src/PesanBuku.js
 import { useState } from 'react';
 
 const PesanBuku = () => {
