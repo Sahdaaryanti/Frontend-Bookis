@@ -7,6 +7,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -14,7 +15,9 @@ const Register = () => {
     try {
       await registerMember({ email, password });
       // Redirect to login page after successful registration
-      navigate('users/login');
+      navigate('/users/login',{ state: { successMessage: 'Registration successful. Please login.' } });
+      setSuccessMessage('Registration successful. Please login.');
+      console.log('Registration successful. Please login.');
     } catch (error) {
       setError('Registration failed. Please try again.');
     }
@@ -59,6 +62,7 @@ const Register = () => {
               placeholder="****"
             />
           </div>
+          {successMessage && <p className="text-green-500 text-sm">{successMessage}</p>}
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <div>
             <button

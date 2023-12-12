@@ -9,7 +9,7 @@ const RiwayatPesanan = () => {
   useEffect(() => {
     const getRiwayat = async () => {
       try {
-        const response = await fetch(`https://backed-bookis-production-c128.up.railway.app/api-docs/payment/user/${localStorage.getItem('userId')}`);
+        const response = await fetch(`http://localhost:3000/payment/user/${localStorage.getItem('userId')}`);
         const data = await response.json();
 
         setRiwayatPesanan(data.paymentStatusResults);
@@ -59,14 +59,14 @@ const RiwayatPesanan = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FDF9EC] p-8">
+    <div className="min-h-screen bg-[#FDF9EC] p-8 overflow-x-auto">
       <h1 className="text-3xl font-semibold mb-6">Riwayat Pesanan Buku</h1>
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">Order</th>
-            <th className="py-2 px-4 border-b">Status Pembayaran</th>
-            <th className="py-2 px-4 border-b">Total Harga</th>
+            <th className="py-2 px-4 border-b sm:px-6">Order</th>
+            <th className="py-2 px-4 border-b sm:px-6">Status Pembayaran</th>
+            <th className="py-2 px-4 border-b sm:px-6">Total Harga</th>
           </tr>
         </thead>
         <tbody>
@@ -74,7 +74,7 @@ const RiwayatPesanan = () => {
             riwayatPesanan.map((pesanan, index) => (
               <tr key={index} className="text-center">
                 <td className="py-2 px-4 border-b">
-                  <Link to="/users/payment" state={{paymentToken:pesanan.payment.noPayment}}>
+                  <Link to="/users/payment" state={{paymentToken:pesanan.payment.noPayment}} className="sm:text-sm">
                     {pesanan.payment.id}
                   </Link>
                 </td>

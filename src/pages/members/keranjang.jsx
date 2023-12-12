@@ -89,27 +89,29 @@ const Cart = ({ cart, onCheckout, onUpdateCart }) => {
   return (
     <div className="min-h-screen max-w-3xl mx-auto my-8 p-8 border rounded">
       <h1 className="text-2xl font-semibold mb-4">Keranjang</h1>
-      <table className="w-full">
-        <thead>
-          <tr className="border-b-2">
-            <th className="px-4 py-2 text-left" >Produk</th>
-            <th className="px-4 py-2 text-left" >Nama</th>
-            <th className="px-4 py-2 text-left" >Jumlah</th>
-            <th className="px-3 py-2 text-left" >Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart.map((product) => (
-            <CartItem
-              key={product.id}
-              product={product}
-              onIncrease={() => {}}
-              onDecrease={() => {}}
-              onDelete={handleDelete}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b-2">
+              <th className="px-4 py-2 text-left" >Produk</th>
+              <th className="px-4 py-2 text-left" >Nama</th>
+              <th className="px-4 py-2 text-left" >Jumlah</th>
+              <th className="px-3 py-2 text-left" >Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cart.map((product) => (
+              <CartItem
+                key={product.id}
+                product={product}
+                onIncrease={() => {}}
+                onDecrease={() => {}}
+                onDelete={handleDelete}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
       
       <div className="mt-10 flex justify-end">
         <button className="bg-[#677C52] text-white py-2 px-4 rounded" onClick={onCheckout}>

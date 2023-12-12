@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { login } from "../../modules/fetch/members/users";
 
@@ -8,6 +8,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -15,10 +17,7 @@ const Login = () => {
     if (token) {
       try {
         const data = jwtDecode(token);
-        console.log("Decoded data from token:", data);
-
         const levelUser = data.isUser ? "admin" : "member";
-
         if (levelUser === "admin") {
           navigate("/admins/dashboard");
         } else if (levelUser === "member") {
@@ -29,17 +28,20 @@ const Login = () => {
         localStorage.removeItem("token");
       }
     }
-  }, [navigate]);
+
+    if (location.state && location.state.successMessage) {
+      setSuccessMessage(location.state.successMessage);
+    }
+  }, [navigate, location]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const data = await login(email, password);
-      console.log("Data from server:", data.token);
-  
+      console.log("Data from server:", data);
+
       // Assuming the user role is available in the data received
       const levelUser = data.levelUser;
-      console.log("User role:", levelUser);
   
       localStorage.setItem("token", data.token);
   
@@ -74,6 +76,7 @@ const Login = () => {
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Login
           </h2>
+          {successMessage && <p className="text-green-500 m-4 text-sm">{successMessage}</p>}
         </div>
         <form className="mt-4 space-y-6" onSubmit={handleLogin}>
           <div className="mb-4">
